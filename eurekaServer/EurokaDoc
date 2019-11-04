@@ -1,0 +1,59 @@
+# Eureka Server
+It has several usages:
+* Service Discovery
+* Load-Balancing
+
+## Load Balancing
+We need a service discovery server. so that services can register in it and the client will 
+contact the service discovery and ask for a particular service.
+
+![Image description](./imgs/1.jpg)
+
+There are 2 approaches for service discovery:
+* Client-Side Discovery
+* Server-Side Discovery
+
+#### Client-Side discovery
+
+The client asks the discovery server can you find me the required service
+and then the response comes in and the client finds the proper service end-point and
+contacts it
+##### Drawback
+Too chatty
+
+#### Server-Side discovery
+
+
+The client sends its message to the discovery server and the server is in charge of directing it 
+to the proper server endpoint.
+
+![Image description](./imgs/2.jpg)
+
+##### Benefit
+Less chatty
+
+
+<b>NOTE:</b> Spring uses client side discovery. Each service that starts up, registers itself in the Eureka
+server and each server that needs a service asks the Eureka server.
+
+#### Load Balancing
+In Spring boot the client (Rest template) asks the Eureka server for instances of a service
+and calls them on a round robin fashion.
+
+![Image description](./imgs/3.jpg)
+
+
+### Fault management
+
+* one of registered services goes down: the services send heart beats
+to discovery server and if no heartbeat comes from the server it is considered that
+the service is down
+
+* Discovery server goes down: the client (LoadBalance annotated restTemplate) will use its chace
+   
+
+
+
+  
+
+ 

@@ -1,0 +1,13 @@
+# Edge Server
+The outside world can't talk to Eureka server to find proper services. so we add and edge server
+that is exposed to the outside world. the request from the clients come to this server and then redirected
+to proper end-point. Edge server has also another benefits which is to perform all the security checks
+(authenticate) requests befor letting them in the inside network.
+
+There are two types of edge server:
+* MicroProxy: gets the outside world requests and reSends them to inside network. (@EnableZuulProxy)
+* Api Gateway: gets the outside world requests and modifies and Sends them to inside network. 
+
+  
+
+ 
